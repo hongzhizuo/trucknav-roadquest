@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="RoadQuest is an open-source checkpoint quiz engine with a TruckNav UK product-training demo.">
+<title>TruckNav RoadQuest — open-source checkpoint quiz engine</title>
+<link rel="stylesheet" href="roadquest.css">
+<style>
+  body{margin:0;font:15px/1.6 Inter,Arial,sans-serif;color:#181a1d;background:#fff}
+  .wrap{width:min(1160px,calc(100% - 28px));margin:auto}
+  .intro{padding:36px 0 8px}
+  .intro h1{margin:0 0 6px;font:700 30px/1.15 Inter}
+  .intro p{max-width:680px;color:#555;margin:0 0 18px}
+  .switcher{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+  .switcher button{padding:8px 14px;border:1px solid #c7cccb;background:#fff;border-radius:20px;font:600 13px/1 Inter;cursor:pointer}
+  .switcher button.active{background:#181a1d;color:#fff;border-color:#181a1d}
+  .links{display:flex;gap:14px;margin:0 0 24px;font-size:13px}
+  .links a{color:#245168}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="intro">
+    <h1>RoadQuest</h1>
+    <p>A small, dependency-free JavaScript engine that turns any set of questions into a road-trip themed checkpoint quiz. Configure your own brand, colours and questions — no fork required. See <code>README.md</code> for the config schema.</p>
+    <div class="switcher">
+      <button data-demo="trucknav" class="active">Demo: TruckNav product training</button>
+      <button data-demo="barista">Demo: Barista onboarding (fictional)</button>
+    </div>
+    <div class="links">
+      <a href="https://github.com/hongzhizuo/trucknav-roadquest#readme">Read the docs</a>
+      <a href="examples/trucknav.config.js">View this config</a>
+    </div>
+  </div>
+  <div id="quest"></div>
+</div>
+
+<script src="examples/trucknav.config.js"></script>
+<script src="examples/barista.config.js"></script>
+<script src="roadquest.js"></script>
+<script>
+  const mount = document.getElementById('quest');
+  const buttons = document.querySelectorAll('.switcher button');
+  function load(name) {
+    mount.innerHTML = '';
+    const config = name === 'barista' ? window.BARISTA_CONFIG : window.TRUCKNAV_CONFIG;
+    RoadQuest.init(mount, config);
+    buttons.forEach(b => b.classList.toggle('active', b.dataset.demo === name));
+  }
+  buttons.forEach(b => b.onclick = () => load(b.dataset.demo));
+  load('trucknav');
+</script>
+</body>
+</html>
