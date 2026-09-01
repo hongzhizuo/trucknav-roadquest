@@ -101,6 +101,8 @@ roadquest.js                     reusable game engine
 roadquest.css                    themeable game styles
 examples/trucknav.config.js      TruckNav product-training configuration
 examples/barista.config.js       fictional reusable example
+sitemap.xml                      GitHub Pages sitemap
+robots.txt                       crawler rules and sitemap location
 LICENSE                          MIT License
 ```
 

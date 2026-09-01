@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hongzhizuo.github.io/trucknav-roadquest/sitemap.xml
